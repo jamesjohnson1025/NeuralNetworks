@@ -126,7 +126,9 @@ if __name__ == '__main__':
 	print('Error function and gradient error calculated successfully')
 
 
-
+    inputs = np.array([[1,2,3],[-1,4,-9]])
+    grad_wrt_outputs = np.array([[-1,1],[2,-3]])
+    true_
 
 
 
