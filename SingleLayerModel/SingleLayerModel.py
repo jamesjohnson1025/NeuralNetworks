@@ -69,6 +69,13 @@ class SingleLayerModel(object):
         fig.tight_layout()
         plt.show()
 
+    def error(outputs,targets):
+	# least square function
+	return 0.5 * ((outputs-targets).sum()/outputs.shape[0])
+    
+    def error_grad(outputs,targets):
+	# Gradient of least square error function
+	return (outputs-targets).sum()/outputs.shape[0]
 
 
 
@@ -98,6 +105,21 @@ if __name__ == '__main__':
         slm.plot(inputs,predicted_outputs,targets)
 
 
+    """
+	Testing the error function
+    """
+    
+    outputs = np.array([[1., 2.], [-1., 0.], [6., -5.], [-1., 1.]])
+    targets = np.array([[0., 1.], [3., -2.], [7., -3.], [1., -2.]])
+    true_error = 5.
+    true_error_grad = np.array([[0.25, 0.25], [-1., 0.5], [-0.25, -0.5], [-0.5, 0.75]])
+
+    if not slm.error(outputs,targets) == true_error:
+	print ('Error calculated unsuccesfully')
+    elif not np.allclose(slm.error_grad(outputs,targets),true_error_grad):
+	print ('Error gradient calculated unsuccessfully');
+    else:
+	print('Error function and gradient error calculated successfully')
 
 
 
