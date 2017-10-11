@@ -77,6 +77,10 @@ class SingleLayerModel(object):
 	# Gradient of least square error function
 	return (outputs-targets).sum()/outputs.shape[0]
 
+    def gradientWrtParameters(self,inputs,grad_wrt_outputs):
+	#[gradient_wrt_parameters,gradient_wrt_biases]
+	return [grad_wrt_outputs.dot(inputs),grad_wrt_outputs.sum(0)]
+	
 
 
 
